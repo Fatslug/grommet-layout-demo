@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Box } from 'grommet';
+import { Box, Grid } from 'grommet';
 import { BoxDemoForm } from '../forms/BoxDemoForm';
 
 import boxProps from '../properties/BoxProps';
@@ -38,42 +38,26 @@ class BoxDemo extends Component {
     });
 
     return (
-      <Box fill>
-        <Box border='#F8AC33' {...props} className='dynamicBox'>
+      <Grid
+        rows={["flex", "auto"]}
+        columns={["flex", "auto"]}
+        areas={[
+          { name: "controlbar", start: [1, 1], end: [1, 1] },
+          { name: "content", start: [0, 1], end: [0, 1] }
+        ]}
+      >
+        <Box gridArea='content' border={{ side: 'all', color: '#333333', size: 'medium' }} {...props} className='dynamicBox'>
           <Box height='small' width='small' background='accent-1'>Test 1</Box>
           <Box height='small' width='small' background='accent-2'>Test 2</Box>
           <Box height='small' width='small' background='accent-3'>Test 3</Box>
           <Box height='small' width='small' background='accent-4'>Test 4</Box>
         </Box>
-        <Box pad='large'>
+        <Box gridArea='controlbar' pad='small'>
           <BoxDemoForm values={this.state.values} onPropertyChange={(e) => this.handlePropertyChange(e)} />
         </Box>
-      </Box>
+      </Grid>
     );
   }
 }
 
 export { BoxDemo };
-
-
-// align=''
-//         alignContent=''
-//         alignSelf=''
-//         animation='slideRight'
-//         background=''
-//         basis=''
-//         border=''
-//         direction=''
-//         elevation=''
-//         fill=''
-//         flex=''
-//         gap=''
-//         height=''
-//         justify=''
-//         margin=''
-//         overflow=''
-//         pad=''
-//         responsive=''
-//         round=''
-//         width=''
-//         wrap=''

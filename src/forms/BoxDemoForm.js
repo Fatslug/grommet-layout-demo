@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormField, Select } from 'grommet';
+import { Accordion, AccordionPanel, Box, FormField, Select, } from 'grommet';
 import boxProps from '../properties/BoxProps';
 
 class BoxDemoForm extends Component {
@@ -44,7 +44,23 @@ class BoxDemoForm extends Component {
   render() {
     return (
       <form>
-        {this.buildForm()}
+        <Accordion animate={true} multiple={false}>
+          <AccordionPanel label="Layout Controls">
+            <Box background="light-2">
+              {this.buildForm()}
+            </Box>
+          </AccordionPanel>
+          <AccordionPanel label="Content Controls">
+            <Box background="light-2" style={{ height: "50px" }}>
+              Panel 2 contents
+            </Box>
+          </AccordionPanel>
+          <AccordionPanel label="Styling Controls">
+            <Box background="light-2" style={{ height: "300px" }}>
+              Panel 3 contents
+            </Box>
+          </AccordionPanel>
+        </Accordion>
       </form>
     );
   }

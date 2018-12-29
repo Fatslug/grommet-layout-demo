@@ -149,13 +149,14 @@ const boxProps = {
   }, 
   margin: {
     options: [
+      'none',
       'xsmall',
       'small',
       'medium',
       'large',
       'xlarge'
     ],
-    default: 'large'
+    default: 'none'
   }, 
   overflow: {
     options: [
