@@ -7,22 +7,46 @@ import boxProps from '../properties/BoxProps';
 class BoxDemo extends Component {
   constructor(props) {
     super(props);
-    let values = [];
-    let propertyArray = Object.keys(boxProps);
-    let valueArray = Object.values(boxProps);
-    for (let i = 0; i < propertyArray.length; i++) {
-      values.push({ [propertyArray[i]]: valueArray[i].default });
-    }
+    
+    let values = this.parseValues(boxProps);
     this.state = {
       values: values
     };
   }
 
-  handlePropertyChange = (e) => {
-    this.setState({
-      values: e
+  parseValues = (boxProps) => {
+    console.log('Parsing Values:', boxProps);
+    let values = [];
+
+    const categoryNames = Object.keys(boxProps);
+    const categoryProps = Object.values(boxProps);
+
+    categoryNames.forEach((categoryName, categoryIndex) => {
+
+      const propNames = Object.keys(categoryProps[categoryIndex]);
+      const propValues = Object.values(categoryProps[categoryIndex]);
+
+      propNames.forEach((propName, propIndex) => {
+        let actualValue;
+        if (propValues[propIndex].hasOwnProperty('value')) {
+          actualValue = propValues[propIndex].value;
+        } else {
+          actualValue = propValues[propIndex]
+        }
+        values.push({ [propName]: actualValue });
+      })
+
     });
-    console.log(this.state.values);
+
+    return values;
+  }
+
+  handlePropertyChange = (e) => {
+    console.log('Property Change:', e);
+    const values = this.parseValues(e);
+    this.setState({
+      values: values
+    });
   }
 
   render() {
@@ -37,8 +61,11 @@ class BoxDemo extends Component {
       }
     });
 
+    console.log('RENDER Props:', props);
+
     return (
       <Grid
+        fill={false}
         rows={["flex", "auto"]}
         columns={["flex", "auto"]}
         areas={[
@@ -53,7 +80,7 @@ class BoxDemo extends Component {
           <Box height='small' width='small' background='accent-4'>Test 4</Box>
         </Box>
         <Box gridArea='controlbar' pad='small'>
-          <BoxDemoForm values={this.state.values} onPropertyChange={(e) => this.handlePropertyChange(e)} />
+          <BoxDemoForm boxProps={boxProps} onPropertyChange={(e) => this.handlePropertyChange(e)} />
         </Box>
       </Grid>
     );

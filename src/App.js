@@ -33,7 +33,7 @@ class App extends Component {
     return (
       <Grommet theme={theme} full>
         <Grid
-          fill
+          fill={true}
           rows={["auto", "flex"]}
           columns={["auto", "flex"]}
           areas={[
