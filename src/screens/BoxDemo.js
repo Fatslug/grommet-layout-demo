@@ -12,7 +12,7 @@ class BoxDemo extends Component {
     let propValues = this.parseValues(boxProps);
     this.state = {
       propValues: propValues,
-      boxArray: []
+      boxArray: [{}, {}]
     };
   }
 

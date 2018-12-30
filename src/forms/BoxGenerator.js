@@ -84,7 +84,7 @@ class BoxGenerator extends Component {
       <form>
         <Box margin='medium'>
           <FormField label='Number of boxes'>
-            <TextInput size='medium' textAlign='center' value={this.state.numBoxes.toString()} onChange={this.onChange} />
+            <TextInput size='large' textAlign='center' value={this.state.numBoxes.toString()} onChange={this.onChange} />
           </FormField>
           <Button margin='xsmall' label="Randomize Box Sizes" onClick={this.randomizeBoxSizes} />
           <Button margin='xsmall' primary label="Reset Boxes" onClick={this.resetBoxSizes} />
