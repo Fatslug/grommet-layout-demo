@@ -10,13 +10,14 @@ const boxProps = {
     },
     gap: {
       options: [
+        'none',
         'xsmall',
         'small',
         'medium',
         'large',
         'xlarge'
       ],
-      value: ''
+      value: 'none'
     }, 
     align: {
       options: [
@@ -26,7 +27,7 @@ const boxProps = {
         'baseline',
         'stretch'
       ],
-      value: ''
+      value: 'start'
     },
     alignContent: {
       options: [
@@ -46,7 +47,7 @@ const boxProps = {
         'end',
         'stretch'
       ],
-      value: ''
+      value: 'stretch'
     },
     justify: {
       options: [
@@ -55,7 +56,7 @@ const boxProps = {
         'between',
         'end'
       ],
-      value: ''
+      value: 'start'
     },
     wrap: {
       options: [
@@ -71,7 +72,7 @@ const boxProps = {
         'true',
         'false'
       ],
-      value: ''
+      value: 'true'
     }, 
   },
   styling: {
@@ -121,7 +122,7 @@ const boxProps = {
         'scroll',
         'visible'
       ],
-      value: ''
+      value: 'auto'
     },
   },
   boxModel: {
@@ -132,7 +133,7 @@ const boxProps = {
         'true',
         'false'
       ],
-      value: ''
+      value: 'false'
     },
     height: {
       options: [

@@ -40,7 +40,6 @@ class BoxDemoForm extends Component {
   }
 
   handleChange = (formType, propertyName, e) => {
-    console.log('CHANGE:', formType, propertyName, e.value);
     let currentState = this.state.values;
     currentState[formType][propertyName].value = e.value;
 

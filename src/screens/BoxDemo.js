@@ -15,7 +15,6 @@ class BoxDemo extends Component {
   }
 
   parseValues = (boxProps) => {
-    console.log('Parsing Values:', boxProps);
     let values = [];
 
     const categoryNames = Object.keys(boxProps);
@@ -42,7 +41,6 @@ class BoxDemo extends Component {
   }
 
   handlePropertyChange = (e) => {
-    console.log('Property Change:', e);
     const values = this.parseValues(e);
     this.setState({
       values: values
@@ -60,8 +58,6 @@ class BoxDemo extends Component {
         props[property] = value;
       }
     });
-
-    console.log('RENDER Props:', props);
 
     return (
       <Grid
