@@ -47,6 +47,26 @@ class BoxDemo extends Component {
     });
   }
 
+  generateBoxes = (numBoxes) => {
+    let boxes = [];
+    let x = 0;
+    for (let i = 0; i < numBoxes; i++) {
+
+      x++;
+      if (x > 4) {
+        x = 1;
+      }
+
+      boxes.push(
+        <Box key={'box-'+i} height='small' width='small' background={'accent-'+x} align='center' justify='center'>
+          Box {i}
+        </Box>
+      )
+    }
+
+    return boxes;
+  }
+
   render() {
     let props = {};
     this.state.values.forEach((val, key) => {
@@ -70,10 +90,7 @@ class BoxDemo extends Component {
         ]}
       >
         <Box gridArea='content' border={{ side: 'all', color: '#333333', size: 'medium' }} {...props} className='dynamicBox'>
-          <Box height='small' width='small' background='accent-1'>Test 1</Box>
-          <Box height='small' width='small' background='accent-2'>Test 2</Box>
-          <Box height='small' width='small' background='accent-3'>Test 3</Box>
-          <Box height='small' width='small' background='accent-4'>Test 4</Box>
+          {this.generateBoxes(10)}
         </Box>
         <Box gridArea='controlbar' pad='small'>
           <BoxDemoForm boxProps={boxProps} onPropertyChange={(e) => this.handlePropertyChange(e)} />

@@ -8,11 +8,11 @@ import './App.css';
 const theme = {
   global: {
     colors: {
-      'brand': '#FE68888',
-      'accent-1': '#004FB6',
-      'accent-2': '#F223FF',
-      'accent-3': '#FFD900',
-      'accent-4': '#9DF4E3'
+      'brand': '#7D4CDB',
+      'accent-1': '#6FFFB0',
+      'accent-2': '#FD6FFF',
+      'accent-3': '#81FCED',
+      'accent-4': '#FFCA58'
     },
     font: {
       family: 'Roboto',
