@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Box, Grid } from 'grommet';
 import { BoxDemoForm } from '../forms/BoxDemoForm';
+import { BoxGenerator } from '../forms/BoxGenerator';
 
 import boxProps from '../properties/BoxProps';
 
@@ -8,9 +9,10 @@ class BoxDemo extends Component {
   constructor(props) {
     super(props);
     
-    let values = this.parseValues(boxProps);
+    let propValues = this.parseValues(boxProps);
     this.state = {
-      values: values
+      propValues: propValues,
+      boxArray: new Array(10)
     };
   }
 
@@ -41,35 +43,41 @@ class BoxDemo extends Component {
   }
 
   handlePropertyChange = (e) => {
-    const values = this.parseValues(e);
+    const propValues = this.parseValues(e);
     this.setState({
-      values: values
+      propValues: propValues
     });
   }
 
-  generateBoxes = (numBoxes) => {
-    let boxes = [];
-    let x = 0;
-    for (let i = 0; i < numBoxes; i++) {
+  handleBoxChange = (e) => {
+    this.setState({
+      numBoxes: e.numBoxes,
+      boxSizes: e.boxSizes
+    })
+  }
 
+  generateBoxes = (boxArray) => {
+    let boxes = boxArray;
+    let x = 0;
+    boxArray.forEach((box, i) => {
       x++;
       if (x > 4) {
         x = 1;
       }
 
       boxes.push(
-        <Box key={'box-'+i} height='small' width='small' background={'accent-'+x} align='center' justify='center'>
-          Box {i}
+        <Box key={'box-'+i} height={box.height || 'small'} width={box.width || 'small'} background={'accent-'+x} align='center' justify='center'>
+          Box {i+1}
         </Box>
       )
-    }
+    });
 
     return boxes;
   }
 
   render() {
     let props = {};
-    this.state.values.forEach((val, key) => {
+    this.state.propValues.forEach((val, key) => {
       const property = Object.keys(val)[0];
       let value = Object.values(val)[0]
       if (value !== '') {
@@ -78,6 +86,8 @@ class BoxDemo extends Component {
         props[property] = value;
       }
     });
+
+    const boxes = this.generateBoxes(this.state.boxArray);
 
     return (
       <Grid
@@ -89,10 +99,11 @@ class BoxDemo extends Component {
           { name: "content", start: [0, 1], end: [0, 1] }
         ]}
       >
-        <Box gridArea='content' border={{ side: 'all', color: '#333333', size: 'medium' }} {...props} className='dynamicBox'>
-          {this.generateBoxes(10)}
+        <Box fill={false} gridArea='content' border={{ side: 'all', color: '#333333', size: 'medium' }} {...props} className='dynamicBox'>
+          {boxes}
         </Box>
-        <Box gridArea='controlbar' pad='small'>
+        <Box gridArea='controlbar' fill={false} pad='small'>
+          <BoxGenerator onBoxChange={(e) => this.handleBoxChange(e)} />
           <BoxDemoForm boxProps={boxProps} onPropertyChange={(e) => this.handlePropertyChange(e)} />
         </Box>
       </Grid>
