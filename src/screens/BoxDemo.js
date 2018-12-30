@@ -12,7 +12,7 @@ class BoxDemo extends Component {
     let propValues = this.parseValues(boxProps);
     this.state = {
       propValues: propValues,
-      boxArray: new Array(10)
+      boxArray: []
     };
   }
 
@@ -51,13 +51,12 @@ class BoxDemo extends Component {
 
   handleBoxChange = (e) => {
     this.setState({
-      numBoxes: e.numBoxes,
-      boxSizes: e.boxSizes
+      boxArray: e
     })
   }
 
   generateBoxes = (boxArray) => {
-    let boxes = boxArray;
+    let boxes = [];
     let x = 0;
     boxArray.forEach((box, i) => {
       x++;
@@ -91,18 +90,24 @@ class BoxDemo extends Component {
 
     return (
       <Grid
-        fill={false}
-        rows={["flex", "auto"]}
+        fill={true}
+        rows={["full", "full"]}
         columns={["flex", "auto"]}
         areas={[
-          { name: "controlbar", start: [1, 1], end: [1, 1] },
-          { name: "content", start: [0, 1], end: [0, 1] }
+          { name: "controlbar", start: [1, 0], end: [1, 0] },
+          { name: "content", start: [0, 0], end: [0, 0] }
         ]}
       >
-        <Box fill={false} gridArea='content' border={{ side: 'all', color: '#333333', size: 'medium' }} {...props} className='dynamicBox'>
+        <Box 
+          fill={true} 
+          gridArea='content' 
+          border={{ side: 'all', color: '#333333', size: 'medium' }}
+          {...props}
+          className='dynamicBox'
+        >
           {boxes}
         </Box>
-        <Box gridArea='controlbar' fill={false} pad='small'>
+        <Box gridArea='controlbar' fill={true} pad='small'>
           <BoxGenerator onBoxChange={(e) => this.handleBoxChange(e)} />
           <BoxDemoForm boxProps={boxProps} onPropertyChange={(e) => this.handlePropertyChange(e)} />
         </Box>
