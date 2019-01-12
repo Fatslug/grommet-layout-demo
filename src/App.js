@@ -12,7 +12,8 @@ const theme = {
       'accent-1': '#6FFFB0',
       'accent-2': '#FD6FFF',
       'accent-3': '#81FCED',
-      'accent-4': '#FFCA58'
+      'accent-4': '#FFCA58',
+      'status-error': '#FF4040'
     },
     font: {
       family: 'Roboto',
@@ -23,7 +24,7 @@ const theme = {
 };
 
 class App extends Component {
-  state = { sidebar: true };
+  state = { sidebar: false };
 
   render() {
     const { sidebar } = this.state;
@@ -52,7 +53,7 @@ class App extends Component {
             background="dark-2"
           >
             <Button onClick={() => this.setState({ sidebar: !sidebar })}>
-              <Text size="large">Title</Text>
+              <Text size="large">Grommet Layout Interactive Demo</Text>
             </Button>
           </Box>
           {sidebar && (
