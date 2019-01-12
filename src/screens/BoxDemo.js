@@ -66,7 +66,8 @@ class BoxDemo extends Component {
 
       boxes.push(
         <Box key={'box-'+i} height={box.height || 'small'} width={box.width || 'small'} background={'accent-'+x} align='center' justify='center'>
-          Box {i+1}
+          <p>Box Width: <b>{box.width || 'small'}</b></p>
+          <p>Box Height: <b>{box.height || 'small'}</b></p>
         </Box>
       )
     });
