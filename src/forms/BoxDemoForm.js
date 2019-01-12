@@ -72,17 +72,17 @@ class BoxDemoForm extends Component {
       <form>
         <Accordion animate={true} multiple={false}>
           <AccordionPanel label="Content Controls">
-            <Box background="light-2">
+            <Box background="light-2" pad='medium'>
               {this.buildForm('content')}
             </Box>
           </AccordionPanel>
           <AccordionPanel label="Styling Controls">
-            <Box background="light-2">
+            <Box background="light-2" pad='medium'>
               {this.buildForm('styling')}
             </Box>
           </AccordionPanel>
           <AccordionPanel label="Box Model Controls">
-            <Box background="light-2">
+            <Box background="light-2" pad='medium'>
               {this.buildForm('boxModel')}
             </Box>
           </AccordionPanel>
